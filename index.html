@@ -4,12 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="index.js" defer></script>
     <title>Rock-Paper-Scissors</title>
 </head>
 <body>
     <h1>Rock-Paper-Scissors</h1>
-    <button class="btn">Click to start</button>
+    <div class="btnContainer">
+        <button data-name="rock" class="btn">
+            <i class="fas fa-hand-rock"></i>
+        </button>
+        <button data-name="paper" class="btn">
+            <i class="fas fa-hand-paper"></i>
+        </button>
+        <button data-name="scissors" class="btn">
+            <i class="fas fa-hand-scissors"></i>
+        </button>
+    </div>
+    
 
-    <script src="index.js"></script>
+    <div class="displayResult">
+        <p></p>
+    </div>
+
+    <div class="playerStandings">
+        <h3>Player Standings</h3>
+
+      <table class="scoreboard">
+        <thead>
+            <tr>
+                <td>Human</td>
+                <td>Alien</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="human">0</td>
+                <td class="alien">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="restart">Restart</button>
+
+    </div>
+
+    
 </body>
 </html>

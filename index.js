@@ -1,12 +1,18 @@
+const btns = document.querySelectorAll('[data-name]');
+const displayResult = document.querySelector('.displayResult > p');
+const humanResult = document.querySelector('.human');
+const alienResult = document.querySelector('.alien');
+const restart = document.querySelector('.restart');
+
+// get computer choice
 const getComputerChoice = () => {
   const choices = ['rock', 'paper', 'scissors'];
   let randomNum = Math.floor(Math.random() * choices.length);
   return choices[randomNum];
 };
 
+// play functionality
 function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-
   if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'scissors' && computerSelection === 'paper') ||
@@ -24,40 +30,36 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-let playerSelection;
-const computerSelection = getComputerChoice();
+let human = 0,
+  alien = 0;
 
-function game() {
-  let result;
-  let human = 0;
-  let alien = 0;
-  let draw = 0;
-  for (i = 0; i < 5; i++) {
-    result = playRound(playerSelection, getComputerChoice());
-    if (result.includes('Win')) {
-      human++;
-    } else if (result.includes('Lose')) {
-      alien++;
-    } else if (result.includes('Draw')) {
-      draw++;
-    }
+function playGame() {
+  const result = playRound(this.dataset.name, getComputerChoice());
+
+  if (result.includes('Win')) {
+    human++;
+    humanResult.textContent = human;
+  } else if (result.includes('Lose')) {
+    alien++;
+    alienResult.textContent = alien;
   }
-  console.log(human, alien, draw);
 
-  if (human > alien) {
-    console.log('Human wins');
-  } else if (alien > human) {
-    console.log('Alien wins');
-  } else if (human === alien) {
-    console.log('No winner No Vanquished');
+  if (human === 5) {
+    displayResult.textContent = 'Human wins';
+  } else if (alien === 5) {
+    displayResult.textContent = 'Alien wins';
+  } else {
+    displayResult.textContent = result;
   }
 }
 
-// console.log(playRound(playerSelection, computerSelection));
-const btnClick = document.querySelector('.btn');
+btns.forEach((btn) => btn.addEventListener('click', playGame));
 
-btnClick.addEventListener('click', () => {
-  playerSelection = prompt('Rock, Paper, Scissors');
-  game();
+//restart game
+restart.addEventListener('click', () => {
+  displayResult.textContent = '';
+  alienResult.textContent = 0;
+  humanResult.textContent = 0;
+  human = 0;
+  alien = 0;
 });
-// console.log(result);
